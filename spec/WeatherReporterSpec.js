@@ -9,12 +9,12 @@ describe("WeatherReporter", function() {
     describe("#isStormy", function() {
         it("can be non-stormy", function() {
             spyOn(Math, 'random').and.returnValue(0.1);
-            expect(weatherReporter.isStormy()).toEqual(false);
+            expect(weatherReporter.isStormy()).toBe(false);
         });
 
         it("can be stormy", function() {
             spyOn(Math, 'random').and.returnValue(0.9);
-            expect(weatherReporter.isStormy()).toEqual(true);
+            expect(weatherReporter.isStormy()).toBe(true);
         });
     });
 
