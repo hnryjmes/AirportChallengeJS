@@ -5,6 +5,7 @@ describe("Airport", function() {
   var plane;
   var weatherReporter;
   var airport;
+  var defaultAirport;
 
   beforeEach(function() {
     plane = new Plane();
@@ -20,8 +21,8 @@ describe("Airport", function() {
 
       it("instructs a plane to land", function() {
         spyOn(plane, 'land');
-        expect(plane.land).toHaveBeenCalled();
         airport.land(plane);
+        expect(plane.land).toHaveBeenCalled();
       });
     });
 
@@ -30,7 +31,7 @@ describe("Airport", function() {
         for (var i = 0; i < 20; i++) {
           airport.land(plane);
         }
-        expect(airport.land(plane)).toThrow("Cannot land plane: airport full");
+        expect(function() { airport.land(plane) }).toThrow("Cannot land plane: airport full");
       });
     });
 
@@ -39,7 +40,7 @@ describe("Airport", function() {
         spyOn(weatherReporter, 'isStormy').and.returnValue(true);
       });
       it("raises an error", function() {
-        expect(airport.land(plane)).toThrow("Cannot land plane: weather is stormy");
+        expect(function() { airport.land(plane) }).toThrow("Cannot land plane: weather is stormy");
       });
     });
   });
@@ -62,7 +63,7 @@ describe("Airport", function() {
       it("raises an error if plane is not at this airport", function() {
         otherAirport = new Airport(weatherReporter, 20);
         otherAirport.land(plane);
-        expect(airport.takeOff(plane)).toThrow("Cannot take off plane: plane not at this airport");
+        expect(function() { airport.takeOff(plane) }).toThrow("Cannot take off plane: plane not at this airport");
       });
     });
     
@@ -72,7 +73,7 @@ describe("Airport", function() {
       });
 
       it("raises an error", function() {
-        expect(airport.takeOff(plane)).toThrow("Cannot take off plane: weather is stormy");
+        expect(function() { airport.takeOff(plane) }).toThrow("Cannot take off plane: weather is stormy");
       });
     });
   });
@@ -96,7 +97,7 @@ describe("Airport", function() {
 
   describe("defaults", function() {
     beforeEach(function() {
-      var defaultAirport = new Airport(weatherReporter);
+      defaultAirport = new Airport(weatherReporter);
     });
 
     it("has a default capacity", function() {
@@ -105,7 +106,7 @@ describe("Airport", function() {
       for (var i = 0; i < capacity; i++) {
         defaultAirport.land(plane);
       }
-      expect(defaultAirport.land(plane)).toThrow("Cannot land plane: airport full");
+      expect(function() { defaultAirport.land(plane) }).toThrow("Cannot land plane: airport full");
     });
   });
 });

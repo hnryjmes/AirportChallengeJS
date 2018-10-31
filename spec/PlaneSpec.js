@@ -10,7 +10,7 @@ describe("Plane", function() {
 
     describe("#takeOff", function() {
         it("raises an error if already flying", function() {
-            expect(plane.takeOff()).toThrow("Plane cannot take off: plane already flying");
+            expect(function() { plane.takeOff() }).toThrow("Plane cannot take off: plane already flying");
         });
     });
 
@@ -22,13 +22,13 @@ describe("Plane", function() {
 
         it("raises an error if already landed", function() {
             plane.land(airport);
-            expect(plane.land(airport)).toThrow("Plane cannot land: plane already landed");
+            expect(function() { plane.land(airport) }).toThrow("Plane cannot land: plane already landed");
         });
     });
 
     describe("#airport", function() {
         it("raises an error if already flying", function() {
-            expect(plane.airport()).toThrow("Plane cannot be at an airport: plane already flying");
+            expect(function() { plane.airport() }).toThrow("Plane cannot be at an airport: plane already flying");
         });
     });
 });
