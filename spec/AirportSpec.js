@@ -55,8 +55,8 @@ describe("Airport", function() {
       it("instructs a plane to take off", function() {
         airport.land(plane);
         spyOn(plane, 'takeOff');
-        expect(plane.takeOff).toHaveBeenCalled();
         airport.takeOff(plane);
+        expect(plane.takeOff).toHaveBeenCalled();
       });
       it("returns the plane that took off", function() {
         airport.land(plane);

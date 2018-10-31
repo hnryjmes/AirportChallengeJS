@@ -17,7 +17,7 @@ describe("Plane", function() {
     describe("#land", function() {
         it("stores the airport the plane landed at", function() {
             plane.land(airport);
-            expect(plane.airport()).toEqual(airport);
+            expect(plane.airport).toEqual(airport);
         });
 
         it("raises an error if already landed", function() {
