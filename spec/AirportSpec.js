@@ -29,12 +29,9 @@ describe("Airport", function() {
         it("raises an error", function() {
           for (var i = 0; i < 20; i++) {
             plane = new Plane();
-            console.log('👉', plane._landed());
             airport.land(plane);
-            console.log("✅");
           }
           plane = new Plane();
-          // console.log('👉', plane._landed());
           expect(function() { airport.land(plane) }).toThrow("Cannot land plane: airport full");
         });
       });
