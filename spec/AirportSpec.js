@@ -87,13 +87,13 @@ describe("Airport", function() {
 
     it("returns planes at the airport", function() {
       airport.land(plane);
-      expect(airport.planes().includes(plane)).toBe(true);
+      expect(airport.planes.includes(plane)).toBe(true);
     });
 
     it("does not return planes that have taken off", function() {
       airport.land(plane);
       airport.takeOff(plane);
-      expect(airport.planes().includes(plane)).toBe(false);
+      expect(airport.planes.includes(plane)).toBe(false);
     });
   });
 
@@ -104,10 +104,12 @@ describe("Airport", function() {
 
     it("has a default capacity", function() {
       spyOn(weatherReporter, 'isStormy').and.returnValue(false);
-      var capacity = airport.DEFAULT_CAPACITY;
+      var capacity = defaultAirport.capacity;
       for (var i = 0; i < capacity; i++) {
+        plane = new Plane();
         defaultAirport.land(plane);
       }
+      plane = new Plane();
       expect(function() { defaultAirport.land(plane) }).toThrow("Cannot land plane: airport full");
     });
   });
