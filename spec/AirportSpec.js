@@ -1,5 +1,6 @@
 describe("Airport", function() {
   var Plane = require('../lib/Plane');
+  // TODO: use spies for WeatherReporter and Plane!!!
   var WeatherReporter = require('../lib/WeatherReporter');
   var Airport = require('../lib/Airport');
   var plane;
